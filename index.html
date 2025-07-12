@@ -3,13 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My First Free App</title>
+  <title>Daily Check-In</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>Hello, world 👋</h1>
-  <p>This is my first app built with free tools.</p>
-  <button id="clickMe">Click me</button>
+  <main>
+    <h1>How Are You Feeling Today?</h1>
+    <form id="checkin-form">
+      <textarea id="entry" placeholder="Type how you're feeling..." rows="5"></textarea>
+      <button type="submit">Save Entry</button>
+    </form>
+    <section id="history">
+      <h2>Previous Entries</h2>
+      <ul id="entry-list"></ul>
+    </section>
+  </main>
 
   <script src="script.js"></script>
 </body>
