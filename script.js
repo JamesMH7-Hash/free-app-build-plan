@@ -14,13 +14,13 @@ document.getElementById('speakBtn').addEventListener('click', () => {
   speechSynthesis.speak(speech);
 });
 
-// 🖼️ Show placeholder image
+// 🖼️ Show placeholder image (uses Unsplash instead of broken placeholder site)
 document.getElementById('generateImageBtn').addEventListener('click', () => {
   const imageArea = document.getElementById('imagePreview');
 
   imageArea.innerHTML = `
     <p><em>Placeholder image for AI-generated scene:</em></p>
-    <img src="https://via.placeholder.com/640x360?text=AI+Generated+Scene" width="100%" />
+    <img src="https://source.unsplash.com/640x360/?technology,artificialintelligence" width="100%" alt="AI generated preview" />
   `;
 });
 
