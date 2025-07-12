@@ -75,3 +75,16 @@ button:hover {
 .delete-btn:hover {
   background-color: #c0392b;
 }
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+#word-count {
+  font-size: 0.9rem;
+  color: #666;
+}
