@@ -60,3 +60,18 @@ button:hover {
   border-left: 4px solid #4CAF50;
   border-radius: 4px;
 }
+
+.delete-btn {
+  background-color: #e74c3c;
+  border: none;
+  color: white;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.8rem;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 0.5rem;
+}
+
+.delete-btn:hover {
+  background-color: #c0392b;
+}
