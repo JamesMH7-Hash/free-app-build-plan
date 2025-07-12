@@ -1,7 +1,3 @@
-// ✅ Hugging Face API key (keep private!)
-const HF_TOKEN = atob("aGZfanhTcldQbmFld3ZVRUd4amFiQ25ad3hkZ0ljVndVY016"); // your token in base64
-
-
 // 🎤 Play voice using browser speech
 document.getElementById("speakBtn").addEventListener("click", () => {
   const text = document.getElementById("script").value.trim();
@@ -17,45 +13,39 @@ document.getElementById("speakBtn").addEventListener("click", () => {
   speechSynthesis.speak(speech);
 });
 
-// 🖼️ Generate real AI image using Hugging Face API
-document.getElementById("generateImageBtn").addEventListener("click", async () => {
-  const prompt = document.getElementById("script").value.trim();
+// 🖼️ Show a stable image that fits the topic
+document.getElementById("generateImageBtn").addEventListener("click", () => {
+  const text = document.getElementById("script").value.toLowerCase().trim();
   const preview = document.getElementById("imagePreview");
 
-  if (!prompt) {
+  if (!text) {
     preview.innerHTML = "<p><em>Please enter a script first.</em></p>";
     return;
   }
 
-  preview.innerHTML = "<p><em>Generating AI image... please wait ⏳</em></p>";
+  // Basic keyword to image map
+  const keywordImages = {
+    spaceship: "https://images.unsplash.com/photo-1612197529786-3a662492c570?auto=format&fit=crop&w=640&q=80",
+    robot: "https://images.unsplash.com/photo-1593642532973-d31b6557fa68?auto=format&fit=crop&w=640&q=80",
+    forest: "https://images.unsplash.com/photo-1509021436665-8f07dbf5bf1d?auto=format&fit=crop&w=640&q=80",
+    city: "https://images.unsplash.com/photo-1486308510493-aa64833634ef?auto=format&fit=crop&w=640&q=80",
+    default: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=640&q=80"
+  };
 
-  try {
-    const response = await fetch("https://api-inference.huggingface.co/models/prompthero/openjourney", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${HF_TOKEN}`,
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ inputs: prompt })
-    });
+  // Pick best match or use default
+  let match = Object.keys(keywordImages).find((keyword) =>
+    text.includes(keyword)
+  );
 
-    if (!response.ok) {
-      throw new Error(`API error: ${response.status}`);
-    }
+  const imageUrl = keywordImages[match || "default"];
 
-    const blob = await response.blob();
-    const imageUrl = URL.createObjectURL(blob);
-
-    preview.innerHTML = `
-      <p><em>AI-generated image for: <strong>${prompt}</strong></em></p>
-      <img src="${imageUrl}" width="100%" alt="AI generated result" />
-    `;
-  } catch (err) {
-    preview.innerHTML = `<p style="color:red;">❌ Failed to generate image. Error: ${err.message}</p>`;
-  }
+  preview.innerHTML = `
+    <p><em>Image shown for topic: <strong>${match || "default"}</strong></em></p>
+    <img src="${imageUrl}" width="100%" alt="Image preview" />
+  `;
 });
 
-// 🎞️ Coming soon: Export to video
+// 🎞️ Coming soon: export to video
 document.getElementById("exportBtn").addEventListener("click", () => {
   alert("Export to video is coming soon!");
 });
