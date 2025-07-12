@@ -10,9 +10,22 @@
   <main>
     <h1>How Are You Feeling Today?</h1>
     <form id="checkin-form">
-      <textarea id="entry" placeholder="Type how you're feeling..." rows="5"></textarea>
-      <button type="submit">Save Entry</button>
-    </form>
+  <textarea id="entry" placeholder="Type how you're feeling..." rows="5"></textarea>
+  
+  <div class="info-row">
+    <label for="mood">Mood:</label>
+    <select id="mood">
+      <option value="😊">😊 Good</option>
+      <option value="😐">😐 Okay</option>
+      <option value="😞">😞 Bad</option>
+    </select>
+
+    <span id="word-count">0 words</span>
+  </div>
+  
+  <button type="submit">Save Entry</button>
+</form>
+
     <section id="history">
       <h2>Previous Entries</h2>
       <ul id="entry-list"></ul>
