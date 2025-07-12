@@ -30,7 +30,7 @@ document.getElementById("generateImageBtn").addEventListener("click", async () =
   preview.innerHTML = "<p><em>Generating AI image... please wait ⏳</em></p>";
 
   try {
-    const response = await fetch("https://api-inference.huggingface.co/models/stabilityai/stable-diffusion-2", {
+    const response = await fetch("https://api-inference.huggingface.co/models/prompthero/openjourney", {
       method: "POST",
       headers: {
         Authorization: `Bearer ${HF_TOKEN}`,
