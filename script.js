@@ -1,30 +1,30 @@
-import { createFFmpeg, fetchFile } from './libs/ffmpeg.min.js';
-
-const ffmpeg = createFFmpeg({
-  corePath: './libs/ffmpeg-core.js',
-  log: true
-});
-
-// 🎤 Voice Preview Using Web Speech API
+// 🎤 Play voice using browser speech
 document.getElementById('speakBtn').addEventListener('click', () => {
-  const script = document.getElementById('script').value.trim();
-  if (!script) return alert('Please enter a script first.');
+  const text = document.getElementById('script').value.trim();
 
-  const utterance = new SpeechSynthesisUtterance(script);
-  utterance.lang = 'en-US';
-  utterance.pitch = 1;
-  utterance.rate = 1;
-  speechSynthesis.speak(utterance);
+  if (!text) {
+    alert('Please enter a script to read.');
+    return;
+  }
+
+  const speech = new SpeechSynthesisUtterance(text);
+  speech.lang = 'en-US';
+  speech.pitch = 1;
+  speech.rate = 1;
+  speechSynthesis.speak(speech);
 });
 
-// 🖼️ Placeholder Image Generation Button
+// 🖼️ Show placeholder image
 document.getElementById('generateImageBtn').addEventListener('click', () => {
-  const preview = document.getElementById('imagePreview');
-  preview.innerHTML = '<em>🧠 AI-generated image would appear here.</em><br><br>' +
-    '<img src="https://via.placeholder.com/640x360?text=Generated+Scene" width="100%" />';
+  const imageArea = document.getElementById('imagePreview');
+
+  imageArea.innerHTML = `
+    <p><em>Placeholder image for AI-generated scene:</em></p>
+    <img src="https://via.placeholder.com/640x360?text=AI+Generated+Scene" width="100%" />
+  `;
 });
 
-// 🎞️ Coming Soon: Export Button
+// 🎞️ Future export button
 document.getElementById('exportBtn').addEventListener('click', () => {
-  alert('Export feature coming soon (will use ffmpeg.wasm).');
+  alert('Export to video is coming soon!');
 });
