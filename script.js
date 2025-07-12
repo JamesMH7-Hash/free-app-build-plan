@@ -1,6 +1,15 @@
-// Load entries on page load
+// Load entries and any saved draft on page load
 document.addEventListener("DOMContentLoaded", () => {
   loadEntries();
+  const savedDraft = localStorage.getItem("draft");
+  if (savedDraft) {
+    document.getElementById("entry").value = savedDraft;
+  }
+});
+
+// Auto-save what's typed (draft)
+document.getElementById("entry").addEventListener("input", (e) => {
+  localStorage.setItem("draft", e.target.value);
 });
 
 // Save entry on form submit
@@ -14,6 +23,7 @@ document.getElementById("checkin-form").addEventListener("submit", (e) => {
   savedEntries.unshift({ text: entry, time: timestamp });
 
   localStorage.setItem("entries", JSON.stringify(savedEntries));
+  localStorage.removeItem("draft");
   document.getElementById("entry").value = "";
   loadEntries();
 });
@@ -24,24 +34,4 @@ function loadEntries() {
   list.innerHTML = "";
   const savedEntries = JSON.parse(localStorage.getItem("entries")) || [];
 
-  savedEntries.forEach((item, index) => {
-    const li = document.createElement("li");
-    li.innerHTML = `
-      <div>
-        <strong>${item.time}</strong><br>${item.text}
-      </div>
-      <button class="delete-btn" data-index="${index}">Delete</button>
-    `;
-    list.appendChild(li);
-  });
-
-  // Attach delete handlers
-  document.querySelectorAll(".delete-btn").forEach(btn => {
-    btn.addEventListener("click", (e) => {
-      const i = e.target.getAttribute("data-index");
-      savedEntries.splice(i, 1);
-      localStorage.setItem("entries", JSON.stringify(savedEntries));
-      loadEntries();
-    });
-  });
-}
+  savedEntries.forEach((item, index) =>
