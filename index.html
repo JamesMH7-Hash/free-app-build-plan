@@ -2,34 +2,30 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Daily Check-In</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI Video Creator</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <main>
-    <h1>How Are You Feeling Today?</h1>
-    <form id="checkin-form">
-  <textarea id="entry" placeholder="Type how you're feeling..." rows="5"></textarea>
-  
-  <div class="info-row">
-    <label for="mood">Mood:</label>
-    <select id="mood">
-      <option value="😊">😊 Good</option>
-      <option value="😐">😐 Okay</option>
-      <option value="😞">😞 Bad</option>
-    </select>
+    <h1>🎬 AI Video Creator</h1>
 
-    <span id="word-count">0 words</span>
-  </div>
-  
-  <button type="submit">Save Entry</button>
-</form>
-
-    <section id="history">
-      <h2>Previous Entries</h2>
-      <ul id="entry-list"></ul>
+    <!-- Script Input -->
+    <section>
+      <label for="script">Script:</label>
+      <textarea id="script" placeholder="Type your video script here..." rows="6"></textarea>
     </section>
+
+    <!-- Controls -->
+    <div class="controls">
+      <button id="speakBtn">🎤 Preview Voice</button>
+      <button id="generateImageBtn">🖼️ Generate Image</button>
+      <button id="exportBtn">🎞️ Export Video (Coming Soon)</button>
+    </div>
+
+    <!-- Outputs -->
+    <div id="imagePreview"></div>
+    <audio id="audioPlayer" controls style="display: none;"></audio>
   </main>
 
   <script src="script.js"></script>
