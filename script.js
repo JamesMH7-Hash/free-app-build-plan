@@ -14,13 +14,25 @@ document.getElementById('speakBtn').addEventListener('click', () => {
   speechSynthesis.speak(speech);
 });
 
-// 🖼️ Show placeholder image (uses Unsplash instead of broken placeholder site)
+// 🖼️ Show AI-related image based on script text
 document.getElementById('generateImageBtn').addEventListener('click', () => {
+  const text = document.getElementById('script').value.trim();
   const imageArea = document.getElementById('imagePreview');
 
+  if (!text) {
+    imageArea.innerHTML = `<p><em>Please enter a script before generating an image.</em></p>`;
+    return;
+  }
+
+  // Replace spaces with + for URL encoding
+  const searchQuery = encodeURIComponent(text);
+
+  // Use Unsplash to get a themed image based on the text
+  const imageUrl = `https://source.unsplash.com/640x360/?${searchQuery}`;
+
   imageArea.innerHTML = `
-    <p><em>Placeholder image for AI-generated scene:</em></p>
-    <img src="https://source.unsplash.com/640x360/?technology,artificialintelligence" width="100%" alt="AI generated preview" />
+    <p><em>AI-generated image preview for: <strong>${text}</strong></em></p>
+    <img src="${imageUrl}" width="100%" alt="AI image for ${text}" />
   `;
 });
 
