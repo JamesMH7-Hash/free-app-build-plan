@@ -1,3 +1,10 @@
+import { createFFmpeg, fetchFile } from './libs/ffmpeg.min.js';
+
+const ffmpeg = createFFmpeg({
+  corePath: './libs/ffmpeg-core.js',
+  log: true
+});
+
 // 🎤 Voice Preview Using Web Speech API
 document.getElementById('speakBtn').addEventListener('click', () => {
   const script = document.getElementById('script').value.trim();
